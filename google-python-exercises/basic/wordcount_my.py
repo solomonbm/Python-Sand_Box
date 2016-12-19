@@ -46,16 +46,49 @@ import sys
 # Then print_words() and print_top() can just call the utility function.
 
 ###
+def getFileAsDict(filename):
+  '''Helper function - retutrs a dict of word:count for
+      all words in filename in lower case and their number of appearences'''
+  f = open(filename, 'r')
+  fileAsDict = {}
+  for line in f:
+    line = line.lower()
+    lineAsList = line.split()
+    for word in lineAsList:
+      if fileAsDict.get(word):
+        fileAsDict[word] += 1
+      else:
+        fileAsDict[word] = 1
+        
+  f.close()
+  return fileAsDict
+
+def print_words(filename):
+  fileAsDict = getFileAsDict(filename)
+  words = sorted(fileAsDict.keys())
+  for word in words:
+    print word, fileAsDict[word]
+
+def get_word_count(word_count_tuple):
+  return word_count_tuple[1]
+
+def print_top(filename):
+  fileAsDict = getFileAsDict(filename)
+  sortedWordsTuples = sorted(fileAsDict.items(), key=get_word_count, reverse=True)
+
+  for word in sortedWordsTuples[:20]:
+    print word[0], word[1]
+  
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
-def main():
+def main():    
   if len(sys.argv) != 3:
     print 'usage: ./wordcount.py {--count | --topcount} file'
-    sys.exit(1)
-
-  option = sys.argv[1]
-  filename = sys.argv[2]
+    #sys.exit(1)
+  print sys.argv[0]
+  option = '--topcount'#sys.argv[1]
+  filename = 'C:\\MyProjects\\google-python-exercises\\basic\\alice.txt'#sys.argv[2]
   if option == '--count':
     print_words(filename)
   elif option == '--topcount':
