@@ -20,15 +20,17 @@ class Message():
         if log:
             file = open(self.FILE_NAME,'a')
             file.write('['+self.severity+'] ')
-            msg = datetime.now().strftime("%y-%m-%d-%H:%M:%S")+': ' + self.text
-            file.write(self.text)
+            msg = datetime.now().strftime("%y-%m-%d-%H:%M:%S")+' ' + self.text
+            file.write(msg)
             file.write('\n')
             file.close()
 
 def main():
-    msg = Message(2, 'testing')
+    msg = Message(2, 'testing123')
     msg.notify()    
-
+    msg2 = Message(0, 'This is an important message!')
+    msg2.notify()
+    
 if __name__ == "__main__":
     main()
 
