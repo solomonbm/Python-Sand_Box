@@ -31,15 +31,15 @@ def getData(n):
     print(data)
 
 def collatzListTest():
-    n = input("Enter a Real number: ")
-    if n%2 == 0:
-        n = n + 1
-    t = input("What do you want to see? [1:n's Data, 2:All Lists up To n] ")
-    if t == 1:
-        getData(n)
-    elif t == 2:
-        for i in xrange(3,n+1,2):
-            collatzList(i)
+	n = 2
+	while n%2 == 0:
+		n = input("Enter an odd number: ")
+	t = input("What do you want to see? [1:n's Data, 2:All Lists up To n] ")
+	if t == 1:
+		getData(n)
+	elif t == 2:
+		for i in xrange(3,n+1,2):
+			collatzList(i)
 
 def main():
     collatzListTest()        

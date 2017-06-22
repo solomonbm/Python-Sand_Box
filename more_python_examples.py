@@ -48,6 +48,12 @@ def print_directory_contents(sPath):
             print_directory_contents(sChildPath)
         else:
             print(sChildPath)        
+#6
+def print_dates():
+    import datetime
+    days_back = int(input("Enter number of days back: "))
+    before_date = (datetime.date.today() - datetime.timedelta(days_back)).strftime("%d-%b-%Y")  # date string, 04-Jan-2013
+    print(before_date)
     
 def main():
     list1 = ['Marseille', 'Amsterdam', 'New York', 'London']
@@ -68,6 +74,8 @@ def main():
     print_new_section(5, 'print_directory_contents')
     sPath = 'C:\\MyProjects\\PyDev\\PythonTest'
     print_directory_contents(sPath)
+    print_new_section(6, 'print_dates')
+    print_dates()
     
 if __name__ == "__main__":
     main()
